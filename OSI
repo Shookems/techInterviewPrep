@@ -1,0 +1,28 @@
+OSI
+Layer 7—User ID/Password sniffing
+Password sniffing is a technique for harvesting passwords that involves monitoring traffic on a network to pull out information. 
+
+Layer 6—Phishing, SSL/TLS session sniffing
+Phishing is the fraudulent practice of sending emails purporting to be from reputable companies to induce individuals to reveal personal information, such as passwords and credit card numbers.
+SSL/TLS Session Sniffing is when a TLS/SSL termination proxy acts as a MitM proxy which hijacks the secure SSL connection.
+
+Layer 5—Hijacking Telnet & FTP Sniffing
+Telnet session hijack occurs when an attacker intercepts the communication channel after a client has authenticated, itself to the server
+FTP sniffing allows Anyone who connects to your network capture network traffic, sniff out your FTP password, and then access/steal your files
+
+Layer 4—Reconnaissance, DoS/DDoS, TCP Session Sniffing/ Port Sniffing
+Reconnaissance by itself is not an attack; however, this could cause a serious security threat by allowing the weaknesses of the network or network resources to be made known to the attacker.
+DoS (DDoS) attack is an explicit attack to prevent legitimate users from accessing network and network services. 
+TCP Session Sniffing is utilizing a software sniffing program to view the TCP handshake. This can lead to TCP hijacking. 
+Port Sniffing provides a view into the type of messages transmitted throughout a network. A sniffing program is a good tool for reviewing data that is transferred in and out of an organization.
+
+Layer 3—Man in the Middle (MITM), Port Sniffing, IP Sniffing
+Man in the middle (MITM) is when a perpetrator positions themself in a conversation between a user and an application—either to eavesdrop or to impersonate one of the parties, making it appear as if a normal exchange of information is underway.
+Port Sniffing provides a view into the type of messages transmitted throughout a network. A sniffing program is a good tool for reviewing data that is transferred in and out of an organization.
+
+Layer 2—Spoofing MAC/ ARP Sniffing
+MAC spoofing is a technique for changing a factory-assigned Media Access Control (MAC) address of a network interface on a networked device.
+ARP Sniffing  An ARP spoofing, also known as ARP poisoning, is a Man in the Middle (MitM) attack that allows attackers to intercept communication between network devices.
+
+Layer 1-- Sniffing
+Sniffing on layer 1 is when Packet capture programs require the NIC to be set to "promiscuous mode," where the NIC will accept any packet regardless of the MAC address. 

@@ -1,0 +1,23 @@
+HTTP Request Structure
+
+Consist of:
+
+Headers
+
+Request:
+	Verb:
+	GET
+	POST
+	PUT (Not implemented)
+	PATCH
+	DELETE
+	 (Verb: GET[200-OK, 404-Not Found], POST[201-Created], PUT[not implemented], PATCH[200-ok, 204-no content, 404-Not Found], and DELETE[204-No Content, 400-Bad Request])
+
+HTTP response status codes
+
+    Informational responses ( 100 – 199 )
+    Successful responses ( 200 – 299 )
+    Redirection messages ( 300 – 399 )
+    Client error responses ( 400 – 499 )
+    Server error responses ( 500 – 599 )
+ Body Text

@@ -1,0 +1,28 @@
+How does DNS and DNS resolver work?
+Before we hit enter on the URL bar, what is a URL? It is the address to the website, much like an address to a building. The first part “http/http/ftp” indicates which protocol is being used. A protocol is simply rules for the computer to follow while communicating over a network. HTTPS is currently the secure way in which information is exchanged. 
+The second part www.google.com is the domain name. It is the website’s address that we can ask a server for information on how to interact. URL and domain name seem alike, but the main difference is that a domain name is part of a URL, where the URL is the complete address. Having the complete address allows the computer to see the path to the web server. 
+Once the enter button is hit for the completed URL, the IP address needs to be correlated to the domain name. The phone book of the internet, DNS helps to provide the correct IP address for the domain name. 
+
+1.	The browser maintains DNS records in the browser cache. If the cache has the IP address for the domain 		name, our browser is then connected to the web server. 
+
+2.	If the information is not in the browser cache, the DNS then checks the OS cache.
+
+3.	If the information is unavailable in the OS cache, the DNS query is then sent to the router cache.
+
+4.	If the previous steps do not produce the information, then a request is sent to the resolver server (ISP 	 cache-Internet Service Provider) for help. 
+
+5.	If the previous steps did not resolve the IP address, a request is sent to the root server of the DNS 	
+	hierarchy. The DNS root server can then tell the resolver server which top level domain server (TLD)--.com, .net, .gov, .org-- to find the IP address. 
+
+6.	Next the resolver requests that the TLD server provide the IP address of the domain name, asking the 		resolver for the Authoritative Name Server. 
+
+7.	The job of the authoritative name server is to know everything about the domain name. This is where the 	domain name is finally reconciled and sent back to the browser. 
+
+8.	Once the IP address is returned to the browser, it is stored in the browser cache to prevent the necessity 	   for all these steps in the future. 
+
+2 different ways to complete this process. 
+Recursive resolving—when you arrive at the ANS it will try, and if it does not know will point to a different ANS. (This takes place approx. 5Xs)
+
+Linear resolving—which is the process described above.
+
+DNS uses the UDP protocol NOT TCP protocol

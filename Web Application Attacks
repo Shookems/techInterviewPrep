@@ -1,0 +1,112 @@
+Web Application Attacks
+
+XSS (using malicious code)
+	Reflected XSS, where the malicious script comes from the current HTTP request. 
+	Stored XSS, where the malicious script comes from the website's database. 
+	DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code. 
+XSS Prevention:
+	Filter input on arrival. At the point where user input is received, filter as strictly as possible based on what is expected or valid input. 
+	
+	Encode data on output. At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding. 
+	
+	Use appropriate response headers. To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses in the way you intend. 
+	
+	Content Security Policy. As a last line of defense, you can use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur. 
+	
+SQLi vulnerabilities (use SQL language to determine if the database information can be accessed)
+	Retrieving hidden data, where you can modify an SQL query to return additional results.
+	Subverting application logic, where you can change a query to interfere with the application's logic.
+	UNION attacks, where you can retrieve data from different database tables.
+	
+Examining the database, where you can extract information about the version and structure of the database.
+	Blind SQL injection, where the results of a query you control are not returned in the application's responses.
+    
+SQLi Prevention:
+Use parameterized queries (prepared statements) instead of string concatenation w/i the query
+
+IDOR Attacks
+	Body Manipulation. Attackers modify the value of a checkbox, radio buttons, and form fields. This lets them access information from other users with ease.
+
+	URL Tampering. The URL is modified at the client's end by tweaking the parameters in the HTTP request.
+IDOR Prevention: ensure proper session management and object-level user access control checks.
+
+Privilege Level Escalations—call admin API
+	Privilege escalation is when a hacker gains access to resources that should be protected, and it’s common with RBAC since changes to endpoints are often made without due concern for who can access them.
+	Prevention:
+	Conduct a continuous assessment of all API endpoints and how they map to various roles.
+	2FA vulnerability attacks (out of order multiple request actions)
+
+ways to hack 2FA
+	SMS-based man-in-the-middle attacks
+	Supply chain attacks
+	Compromised MFA authentication workflow bypass
+	Pass-the-cookie attacks
+	Server-side forgeries
+
+Prevention:
+Ensure that 2FA is enforced on your accounts. If you can choose to skip 2FA, then it’s like you don’t have it at all;
+
+Avoid codes sent by SMS and use authenticator apps like Google Authenticator, or Authy instead or even better, leveraging WebAuthN (if the service you are using supports it);
+
+Like all other forms of phishing, beware where you are entering your password. Make sure the domain name in the address bar is what you expect it to be, even if the page looks identical;
+
+Avoid password reuse and use strong passwords to prevent attackers getting to the 2FA stage in the first place.
+
+OTP (one-time password)
+	Security depends on the confidentiality of text messages and the security of the network, neither of which can be guaranteed.
+
+	specialized Trojans exist that allow circumvention of OTP over SMS security. These trojans hijack mobile phones
+
+Prevention:
+	Use long passwords - Passwords must contain 8 characters or more (lowercase, uppercase letters, digits, and special symbols). It defends an account from brute force attacks.
+
+	Apply different passwords for different services - This can help prevent credentials leakage if one of the services gets compromised.
+
+	Change passwords periodically - By regularly changing your passwords, it can help avoid account hijacking in case of a service database leak.
+
+	Use a password manager - Encrypted password storage prevents thefts by trojans.
+
+	Update OS and programs - Developers continuously improve security issues, and by using the latest software, you’ll be safeguarded against dated hacking methods. 
+
+	Beware of phishing emails and text messages - Don’t click on suspicious links. Hackers can steal credentials when you enter them on a fraudulent site.
+
+	Only use sites with SSL certificates - Try to only visit websites with a trusted SSL certificate that provides site authentication, enables encrypted connections,  and avoids sensitive data interception during a man-in-the-middle attack.  
+
+	Disable lock screen notification - This can help eliminate the risk of criminals peeping at your OTP.
+
+	Protect SIM card by PIN - This helps prevent unauthorized SIM usage in the case of phone or SIM card theft.
+
+	Do not use SMS-based applications - App data can’t be as easily passed to a 3rd party without your knowledge. That prevents easy SIM-swapping attacks.
+
+	Try to avoid email-based and SMS-based recovery methods - These methods are vulnerable to account hijacking.
+
+	Type the OTP directly into browsers - Never send back codes via SMS  and don't enter the codes from the prompt during a phone call. Reliable services don't provide these options for authentication.
+
+	Try to use trusted authenticator apps or U2F hardware authenticators when it is possible - This helps to avoid weaknesses of 2FA via SMS and 2FA via email methods.
+
+HTML
+	Look for sensitive login information in the HTML code 
+
+	Prevention, ensure all sensitive information is removed from HTML code
+
+File path traversal 
+	Directory traversal (also known as file path traversal) is a web security vulnerability that allows an attacker to read arbitrary files on the server that is running an application. This might include application code and data, credentials for back-end systems, and sensitive operating system files.
+	
+	Prevention
+	User input validation, ensure canonicalized path starts with the expected base name
+
+Web cache poisoning 
+	Check to see if registering or logging in with false information is possible
+	Check error messages when incorrect login information is attempted
+	If a verification code is used, check how many times a verification code can be used by a user or if an error message is displayed
+
+Prevention
+	If you are considering excluding something from the cache key for performance reasons, rewrite the request instead. 
+	Don't accept fat GET requests. Be aware that some third-party technologies may permit this by default.
+	Patch client-side vulnerabilities even if they seem unexploitable. 
+
+Brute forcing using a wordlist
+
+Prevention:
+	Lock accounts after a specified number of tries. (Only to be unlocked by admin)
+	Slow down online guessing attacks with device cookies
