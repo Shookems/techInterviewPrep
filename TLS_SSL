@@ -25,54 +25,127 @@ TLS 1.0 and 1.1 have been “broken” and are deprecated as of March 2020. TLS 
 
 Explanation of how TLS/SSL works:
 The TLS/SSL handshake process
-1.	Each TLS certificate consists of a key pair made of a public key and private key.
-	These keys are important because they interact behind the scenes during website transactions.
-2.	Every time you visit a website, the client server and web browser communicate to ensure there is a secure 	  TLS/SSL encrypted connection.
-3.	When a web browser (or client) directs to a secured website, the website server shares its TLS/SSL  		certificate and its public key with the client to establish a secure connection and a unique session key.
-4.	The browser confirms that it recognizes and trusts the issuer, or Certificate Authority, of the SSL 		certificate—in this case DigiCert. The browser also checks to ensure the TLS/SSL certificate is unexpired, 		unrevoked, and that it can be trusted.
-5.	The browser sends back a symmetric session key, and the server decrypts the symmetric session key using 	its private key. The server then sends back an acknowledgement encrypted with the session key to start the 	   encrypted session.
-6.	Server and browser now encrypt all transmitted data with the session key. They begin a secure session that 	   protects message privacy, message integrity, and server security.
+1.Each TLS certificate consists of a key pair made of a public key and private key.
+These keys are important because they interact behind the scenes during website transactions.
+
+2.Every time you visit a website, the client server and web browser communicate to ensure there 	is a secure TLS/SSL encrypted connection.
+
+3.When a web browser (or client) directs to a secured website, the website server shares its TLS/SSL certificate and its public key with the client to establish a secure connection and a unique session key.
+
+4.The browser confirms that it recognizes and trusts the issuer, or Certificate Authority, of the SSL 	certificate—in this case dogcart. The browser also checks to ensure the TLS/SSL certificate is unexpired, unrevoked, and that it can be trusted.
+
+5.The browser sends back a symmetric session key, and the server decrypts the symmetric session key using its private key. The server then sends back an acknowledgement encrypted with the session key to start the encrypted session.
+
+6.Server and browser now encrypt all transmitted data with the session key. They begin a secure session that protects message privacy, message integrity, and server security.
 
 
-The process of asymmetric encryption works by creating a key pair with a public and private key. The private key is kept secret from everyone but the creator of the key, while the public key is available to everyone. The data is encrypted with the private key and decrypted when needed with the public key.
+TLS
+Downgrade attacks
+
+Risks with using older versions/any other past TLS vulns they’re aware of
+SMTP is an insecure protocol that lacks encryption. It had to be retrofitted to increase security by adding the STARTTLS command. If the client supports encryption (TLS), it will understand the STARTTLS and initiate and encrypted email exchange. However, if the client does not know TLS, the STARTTLS command will be ignored, and the email will be sent in plaintext. Since the STARTTLS command is sent in plaintext, a MITM attacker can exploit the STARTTLS feature by executing a downgrade attack on the SMTP connection. This is facilitated by tampering with the upgrade command; the attacker can replace STARTTLS with a nonsense string, containing the same number of characters to preserve the packet size. The client will then fail to identify. In doing this, the client’s machine will revert to sending an email in plaintext. Oftentimes, a downgrade attack is launched along with a MITM attack
+Although enforcing TLS for communications involving client-to-server, server-to-server communications require fail open which allow legacy servers to send emails. This is the main concern because it is unknown if the server receiving the communication is TLS enabled. The way to mitigate this is for MTA-STS to allow servers to respond with information regarding whether TLS is supported. If TLS is not supported, a fail close (email is not sent) if an upgrade negotiation is lacking. Therefore, making a TLS downgrade impossible. The process of asymmetric encryption works by creating a key pair with a public and private key. The private key is kept secret from everyone but the creator of the key, while the public key is available to everyone. The data is encrypted with the private key and decrypted when needed with the public key.
 
 Symmetric—same key, super-fast
 Asymmetric – public/private key, slow, avoids key exchange problem
 
 How are keys shared?
-o	Diffie-Hellman-- The Diffie–Hellman (DH) Algorithm is a key-exchange protocol that enables two parties 		communicating over public channel to establish a mutual secret without it being transmitted over the 		Internet. DH enables the two to use a public key to encrypt and decrypt their conversation or data using 	 symmetric cryptography.
-o	RSA-- a form of public-key cryptography, which is used to secure communication between multiple parties. 	 The exchange uses public keys to encrypt data as it travels electronically. RSA is what's known as 			asymmetric cryptography, which uses a combination of public and private keys for security.
-o	Private vs. public keys for servers-- Private Key is used to both encrypt and decrypt the data and is 		shared between the sender and receiver of encrypted data. The public key is only used to encrypt data and 	  to decrypt the data, the private key is used and is shared. ... The public key is free to use, and the 		private key is kept secret only.
+Diffie-Hellman-- The Diffie–Hellman (DH) Algorithm is a key-exchange protocol that enables two parties communicating over public channel to establish a mutual secret without it being transmitted over the Internet. DH enables the two to use a public key to encrypt and decrypt their conversation or data using symmetric cryptography.
+
+RSA-- a form of public-key cryptography, which is used to secure communication between multiple parties. The exchange uses public keys to encrypt data as it travels electronically. RSA is what's known as asymmetric cryptography, which uses a combination of public and private keys for security.
+
+Private vs. public keys for servers-- Private Key is used to both encrypt and decrypt the data and is 		shared between the sender and receiver of encrypted data. The public key is only used to encrypt data and to decrypt the data, the private key is used and is shared. ... The public key is free to use, and the private key is kept secret only.
 	
 Symmetric vs. asymmetric?
-	The basic difference between these two types of encryption is that symmetric encryption uses one key for both encryption and decryption, and the asymmetric encryption uses public key for encryption and a private key for decryption.
+The basic difference between these two types of encryption is that symmetric encryption uses one key for both encryption and decryption, and the asymmetric encryption uses public key for encryption and a private key for decryption.
 
-	Symmetric keys should be kept secret from other parties than the participants in the scheme. The term "secret key" is often used as a synonym for the symmetric key. The private keys for asymmetric schemes are not shared, but are of course also kept secret, as privacy implies secrecy.
+Symmetric keys should be kept secret from other parties than the participants in the scheme. The term "secret key" is often used as a synonym for the symmetric key. The private keys for asymmetric schemes are not shared, but are of course also kept secret, as privacy implies secrecy.
 
-	The establishment of symmetric keys between parties can be performed in several ways:
-		Key Agreement (KA): the establishment of a key using a key agreement scheme such as DH or ECDH - usually followed by a KDF (see below);
+Uses:
+Symmetric Encryption
+Payment applications, such as card transactions where PII needs to be protected to prevent identity theft or fraudulent charges.
+Validations to confirm that the sender of a message is who he claims to be.
+Random number generation or hashing.
+
+Asymmetric Encryption
+key exchange
+email security
+Web security
+Other encryption systems that require key exchange over the public network. Two keys (public and private), private key cannot be derived for the public, so the public key can be freely distributed without confidentially being compromised.
+
+
+The establishment of symmetric keys between parties can be performed in several ways:
+
+Key Agreement (KA): the establishment of a key using a key agreement scheme such as DH or ECDH - usually followed by a KDF (see below);
 		
-		Key Encapsulation (KE) or Key Wrapping (KW): the sending of a key encrypted by another (public) key;
+Key Encapsulation (KE) or Key Wrapping (KW): the sending of a key encrypted by another (public) key;
 		
-		Key Sharing schemes: the creation of a key from key parts held by different persons;
+Key Sharing schemes: the creation of a key from key parts held by different persons;
 
-		Quantum Key Distribution (QKD), the distribution of keying material over an optically linked connection that is impossible to eavesdrop.
+Quantum Key Distribution (QKD), the distribution of keying material over an optically linked connection that is impossible to eavesdrop.
 
-		Out-of-band" procedures: the transport of a randomly generated key using, for instance: a previous telephone call, a letter or the handover of a data carrier like a USB thumbdrive.
+Out-of-band" procedures: the transport of a randomly generated key using, for instance: a previous telephone call, a letter or the handover of a data carrier like a USB thumbdrive.
 
 
 Insecure seed/insecure random
-	Insecure randomness errors occur when a function that can produce predictable values is used as a source of randomness in security-sensitive context. For a value to be cryptographically secure, it must be impossible or highly improbable for an attacker to distinguish between it and a truly random value.
+Insecure randomness errors occur when a function that can produce predictable values is used as a source of randomness in security-sensitive context. For a value to be cryptographically secure, it must be impossible or highly improbable for an attacker to distinguish between it and a truly random value.
 
 Perfect forward secrecy
-	Perfect Forward Secrecy (PFS) is an IPsec property that ensures that derived session keys are not compromised if one of the private keys is compromised in the future. ... Using PFS means that even if a third party managed to intercept a symmetrical key, that party can only use the intercepted key for a short time.
+Perfect Forward Secrecy (PFS) is an IPsec property that ensures that derived session keys are not compromised if one of the private keys is compromised in the future. ... Using PFS means that even if a third party managed to intercept a symmetrical key, that party can only use the intercepted key for a short time.
 
 Encryption vs. hashing vs. encoding
-	Encoding: Reversible transformation of data format, used to preserve usability of data. Not used to hide data.
+Encoding: Reversible transformation of data format, used to preserve usability of data. Not used to hide data.
 
-	Hashing: Is a one-way summary of data, cannot be reversed, used to validate the integrity of data. Sort of used to hide data. 
+Hashing: Is a one-way summary of data, cannot be reversed, used to validate the integrity of data. Sort of used to hide data.  
 
-	Encryption: Secure encoding of data used to protect confidentiality of data. Reversable/bi-directional function. The original message can be retrieved using a decryption key. Used to hide data.
+Encryption: Secure encoding of data used to protect confidentiality of data. Reversable/bi-directional function. The original message can be retrieved using a decryption key. Used to hide data.
+
+Hashing helps protect the integrity of the information and Encryption is used to secure the data from the reach of third parties.
+Hashing is widely used in authentication systems to avoid storing plaintext passwords in databases, but is also used to validate files, documents, and other types of data.
+
+Encryption is commonly used to protect data in transit and data at rest. Every time someone uses an ATM or buys something online with a smartphone, encryption is used to protect the information being relayed.
 
 One-time password (OTP) 
-	systems provide a mechanism for logging on to a network or service using a unique password that can only be used once, as the name suggests. The static password is the most common authentication method and the least secure.
+systems provide a mechanism for logging on to a network or service using a unique password that can only be used once, as the name suggests. The static password is the most common authentication method and the least secure.
+
+
+HMAC and why it is used instead of hash:
+HMAC can provide authentication using a shared secret instead of using digital signatures with asymmetric cryptography.
+
+A hash lets you verify only the authenticity of the data (ie., that the data you received is what was originally sent). An HMAC lets you verify both the authenticity and the originator of the data. A hash doesn't use a key.
+
+Reasons not to use MD5:
+Brute force attacks on MD5 hashes are fast
+MD5 dictionary tables are large
+MD5 hash collisions
+
+Block vs Stream Ciphers
+Block cipher-- breaks down plaintext messages into fixed-size blocks before converting them into ciphertext using a key. Encrypting information bit-by-bit. Examples: Lucifer / DES, IDEA, RC5, Blowfish
+
+Stream cipher--breaks a plaintext message down into single bits, which then are converted individually into ciphertext using key bits. Examples: FISH, RC4, ISAAC, SEAL, SNOW
+
+Block Cipher:
+Processing or encoding of the plain text is done as a fixed length block one by one (64 or 128 bits in size)
+The same key is used to encrypt each of the blocks
+A Pad added to short length blocks
+Uses Symmetric Encryption and is NOT used in asymmetric encryption
+Confusion factor: The key to the cipher text relationship could be really complicated
+Diffusion factor: output depends on the input in a complex method
+Most block ciphers are based on Feistel cipher in structure
+Looks more like a large substitution and Using the idea of a product cipher
+More secure in most cases
+Usually more complex and slower in operation
+
+Stream Cipher:
+Processing or encoding of plain text is done bit by bit. The block size here is imply one bit
+A different key is used to encrypt each of the bits
+High speed and low hardware complexity
+Key is often combined with an initialization vector
+Long period with no repetition
+Statistically random
+Depends on a large key and Large liner complexity
+Equally secure if properly designed
+Usually simple and faster
+
+Initialization Vector (IV)
+A continuously changing number used in combination with a secret key to encrypt data. Initialization vectors (IVs) are used to prevent a sequence of text that is identical to a previous sequence from producing the same exact ciphertext when encrypted.

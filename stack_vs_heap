@@ -1,0 +1,34 @@
+Parameter								Stack
+Type of data structures		A stack is a linear data structure.
+Access speed				High-speed access
+Space management			Space managed efficiently by OS so memory will never become fragmented.
+Access						Local variables only
+Limit of space size			Limit on stack size dependent on OS.
+Resize						Variables cannot be resized
+Memory Allocation			Memory is allocated in a contiguous block.
+Allocation and Deallocation	Automatically done by compiler instructions.
+Deallocation				Does not require to de-allocate variables.
+Cost						Less
+Implementation				A stack can be implemented in 3 ways simple array based, using dynamic memory, and 							   Linked list based.
+Main Issue					Shortage of memory
+Locality of reference		Automatic compile time instructions.
+Flexibility					Fixed size
+Access time					Faster
+
+
+Parameter								Heap
+Type of data structures     Heap is a hierarchical data structure.
+Access speed                Slower compared to stack
+Space management            Heap Space not used as efficiently. Memory can become fragmented as blocks 									of memory first allocated and then freed.
+Access                      It allows you to access variables globally.
+Limit of space size         Does not have a specific limit on memory size.
+Resize                      Variables can be resized.
+Memory Allocation           Memory is allocated in any random order.
+Allocation and Deallocation It is manually done by the programmer.
+Deallocation                Explicit de-allocation is needed.
+Cost                        More
+Implementation              Heap can be implemented using array and trees.
+Main Issue                  Memory fragmentation
+Locality of reference       Adequate
+Flexibility                 Resizing is possible
+Access time                 Slower

@@ -1,0 +1,26 @@
+Recovering from "fat finger" chmod -x chmod with no contact with outside world:
+	Copy a random binary that has exec bit on, and cat the chmod contents into it
+	setfacl -m u::rwx,g::rwx,o::rwx ./chmod
+	alias chmod='/lib/ld-2.11.1.so ./chmod'
+
+3 things to secure on an operating system:
+	Turn off unwanted services. Set as many services to run on the loopback interface as possible.
+	Install updates for as much software as possible.
+	Turn on SSH key based authentication and allow access from specific hosts only
+
+Defense against physical access to hard disk:
+	Hard disk encryption with a strong passphrase
+
+File Permissions:
+rwsr-xr-x 1 root root 54256 May 16  2017 /usr/bin/passwd
+
+The file above has a setuid bit set. This means that when a user runs the command it will run as the owner of the file (root in this case) and do whatever root can do, which in this case is to update the passwd and/or shadow files which a user cannot directly edit. If there is a binary that has a setuid bit set, and has a BoF in it, the attacker could potentially pop a shell and gain root access to the box.
+
+drwxrwxrwt 32 root root 4096 Oct  4 12:15 /boo
+	directory permissions prevents one user from changing content owned by someone else. 
+
+	sticky bit refers to directories, and protects directories and their content from being hijacked by non-owners
+
+SUID-- File(Run program as owner of the file). Directory--NA
+SGID-- File(Assign authority to run program as owner of the file). Directory(Inherit group ownership of all of 		  the items created beneath directory)
+Sticky Bit-- File--NA Directory(Only owner of the file can delete the file (ie. /tmp))

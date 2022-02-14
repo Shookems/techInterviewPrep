@@ -1,0 +1,15 @@
+Differences between IPv4 and IPv6:
+	IPv4 is 32 bit and IPv6 is 128 bits. That means that IPv6 has far more IP addresses (2^128) and won’t run out of them any time soon.
+	
+	IPv6 doesn’t have a broadcast address. IPv4 does. By default, it’s the last address on each subnet.
+
+	The IPv6 Authentication Header (AH) provides data integrity and data authentication for the entire IPv6 packet. The IPv6 Encapsulating Security Payload header provides confidentiality and/or authentication and data integrity to the encapsulated payload. Anti-replay protection is provided by both the AH and ESP Header.
+
+Problems with IPv6:
+	Older devices don’t support IPv6. So, if there are newer clients that use IPv6 only and talk to say a gateway that supports only IPv4, it’s going to break things.
+
+	Remembering IPv6 addresses is harder, and DNS becomes a must 
+	
+	Needing to open firewall rules to allow ICMP traffic into the network
+
+

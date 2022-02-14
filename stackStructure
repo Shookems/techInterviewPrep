@@ -1,0 +1,64 @@
+Data structure of a stack
+Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out). There are many real-life examples of a stack. 
+
+Consider an example of weight plates stacked on top of one another.The plate which is at the top is the first one to be removed, i.e. the plate which has been placed at the bottom most position remains in the stack for the longest period of time. So, it can be simply seen to follow LIFO(Last In First Out)/FILO(First In Last Out) order.
+
+A stack is an Abstract Data Type (ADT), commonly used in most programming languages. It is named stack as it behaves like a real-world stack, for example – a deck of cards or a pile of plates, etc. A real-world stack allows operations at one end only. 
+
+Stack ADT allows all data operations at one end only. At any given time, we can only access the top element of a stack. The element which is placed (inserted or added) last, is accessed first. In stack terminology, insertion operation is called PUSH operation and removal operation is called POP operation.
+
+Basic Operations
+•	Push: Add an element to the top of a stack
+•	Pop: Remove an element from the top of a stack
+•	IsEmpty: Check if the stack is empty
+•	IsFull: Check if the stack is full
+•	Peek: Get the value of the top element without removing it
+
+The push and pop operations take constant time, i.e. O(1), during the array-based implementation of a stack.
+Applications of Stack Data Structure
+
+Despite being a simple data structure to implement, stack it is very powerful. Common stack uses are:
+	Reversing a word—After all the letters of the word are placed in a stack, pop them out. Due to the LIFO stack order, the letters will come out in reverse order. 
+	
+	Compilers—By converting an expression to prefix or postfix form, compilers can use the stack to calculate expressions (2 + 4 / 5 * (7 – 9))
+	
+	Browsers—All the URLs visited previously in a stack are saved in the back button of the browser. Every time a new page is visited, it is added to the top of the stack. When the back button is pressed, the current URL is removed from the stack to access the previous URL. 
+
+Working of Stack Data Structure
+The operations work as follows:
+	1.	A pointer called TOP is used to keep track of the top element in the stack.
+	2.	When initializing the stack, we set its value to -1 so that we can check if the stack is empty by 			comparing TOP == -1.
+	3.	On pushing an element, we increase the value of TOP and place the new element in the position pointed 	  to by TOP.
+	4.	On popping an element, we return the element pointed to by TOP and reduce its value.
+	5.	Before pushing, we check if the stack is already full
+	6.	Before popping, we check if the stack is already empty
+
+A stack is a data structure that allows you to pile elements on one another. The last element added is the first element to be removed. In certain OS’s (Windows) the arguments to a function are pushed on to a stack in reverse order before the function’s address is finally pushed. So, when calling the function, the function is first called .. after which arg1, arg2 and arg3 are passed as parameters to it. Function’s local
+variables are also stored on the stack. The return address of a function is also stored on the stack and can be overwritten. Faster than the heap.
+
+
+
+Difference between Stack and Array Data Structures:
+
+Stacks
+	Stacks are based on the LIFO principle, i.e., the element inserted at the last, is the first element to come out of the list.
+	
+	Insertion and deletion in stacks takes place only from one end of the list called the top.
+	
+	Stack has a dynamic size.
+	
+	Stack can contain elements of different data type.
+	
+	We can do only linear search
+
+Array
+	In the array the elements belong to indexes, i.e., if you want to get into the fourth element you have to write the variable name with its index or location within the square bracket eg arr[4]
+	
+	Insertion and deletion in array can be done at any index in the array.
+	
+	Array has a fixed size.
+	
+	Array contains elements of same data type.
+	
+	We can do both linear and Binary search
+	

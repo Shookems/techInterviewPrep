@@ -1,0 +1,45 @@
+Now that the IP address of the web server is located, a connection is initiated using the internet protocol to communicate. TCP/IP is the protocol most utilized. The connection takes place using a process known as the TCP 3-way handshake. 
+1.	Our (client) computer sends a SYN message to the web server asking if it is open for a new connection.
+2.	If it is available for connection, the web server acknowledges with a SYN/ACK message. 
+3.	Once our (client) computer receives its message, it lets the web server know that the message is received by sending an ACK message.
+
+
+ Another protocol that is frequently utilized is the User Datagram Protocol (UDP). This protocol is connectionless and does not require the 3-way handshake. Because it does not require the connection, it is less reliable. The pros to UDP though are it is much faster. UDP is beneficial in Voice over IP (VoIP), streaming movies, or gaming. Not every packet is required for these activities. 
+
+TCP
+Requires an established connection to transmit data (connection should be closed once transmission is complete)
+Able to sequence
+Can guarantee delivery of data to the destination router
+Retransmission of lost packets is possible
+Extensive error checking and acknowledgment of data
+Data is read as a byte stream; messages are transmitted to segment boundaries
+Slower than UDP
+Does not support Broadcasting
+Used by HTTPS, HTTP, SMTP, POP, FTP, etc
+
+UDP
+Requires an established connection to transmit data (connection should be closed once transmission is complete)
+Able to sequence
+Can guarantee delivery of data to the destination router
+Retransmission of lost packets is possible
+Extensive error checking and acknowledgment of data
+Data is read as a byte stream; messages are transmitted to segment boundaries
+Slower than UDP
+Does not support Broadcasting
+Used by HTTPS, HTTP, SMTP, POP, FTP, etc
+	**telnet will only allow for testing of TCP ports; telnet will not work on UDP without sending a custom UDP packet to talk to the app listening
+	on that port (ie. nslookup(DNS:53)
+
+Managing a stateful firewall
+Because TCP is stateful to begin with. TCP keeps track of its connections using source and destination address, port number and IP flags. A connection will begin with a three-way handshake (SYN, SYN-ACK, ACK) and typically end with a two-way exchange (FIN, ACK). For a stateful firewall this makes keeping track of the state of a connection rather simple. An initial request for a connection comes in from an inside host (SYN). This will initiate an entry in the firewall's state table. If the destination host returns a packet to set up the connection (SYN, ACK) then the state table reflects this. Finally, the initial host will send the final packet in the connection setup (ACK). This will finalize the state to established. Once a connection is maintained as established communication is freely able to occur between hosts. With TCP, this state entry in the table is maintained if the connection remains established (no FIN, ACK exchange) or until a timeout occurs.
+
+The harder part of the operation of a stateful firewall is how it deals with User Datagram Protocol (UDP) and Internet Control Message Protocol (ICMP). This is because neither of these protocols is connection-based like TCP. With UDP, the firewall must track state by only using the source and destination address and source and destination port numbers. Of course, this is not quite as secure as the state tracking that is possible with TCP but does offer a mechanism that is easier to use and maintain than with ACLs. 
+
+
+Sequence Numbers
+Sequence numbers are an alternative way of indicating freshness. If Alice is sending a stream of messages to Bob, she can bind each one to a sequential serial number, and encryption will prevent an eavesdropper from altering any sequence number. If Bob is suspicious, he can check that the numbers in Alice's messages are incremented sequentially. It would be a straightforward matter for him to spot a replayed message since the sequence order would be incorrect and its number would duplicate that of an earlier message.
+
+All bytes in a TCP connection are numbered, beginning at a randomly chosen initial sequence number (ISN). The SYN packets consume one sequence number, so actual data will begin at ISN+1. The sequence number is the byte number of the first byte of data in the TCP packet sent (also called a TCP segment).
+
+	Security Implications:
+	It allows an off-path (i.e., not man-in- the-middle) attacker to hijack a TCP connection and inject malicious content, effectively granting the attacker write-only permission on the connectio

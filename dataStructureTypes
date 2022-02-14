@@ -1,0 +1,54 @@
+Queue Data Structure
+	Unlike stack, the queue data structure works in the FIFO principle where first element stored in the queue will be removed first.
+	It works just like a queue of people in the ticket counter where first person on the queue will get the ticket first.
+
+Linked List Data Structure
+	In linked list data structure, data elements are connected through a series of nodes. And, each node contains the data items and address to the next node.
+
+Nonlinear data structures
+	Unlike linear data structures, elements in non-linear data structures are not in any sequence. Instead, they are arranged in a hierarchical manner where one element will be connected to one or more elements.
+	Non-linear data structures are further divided into graph and tree-based data structures.
+
+Graph Data Structure
+	In graph data structure, each node is called vertex and each vertex is connected to other vertices through edges.
+
+Trees Data Structure
+	Like a graph, a tree is also a collection of vertices and edges. However, in tree data structure, there can only be one edge between two vertices.
+
+Linear Vs Non-linear Data Structures
+	
+Linear Data Structures
+	The data items are arranged in sequential order, one after the other.
+	
+	All the items are present on the single layer.
+	
+	It can be traversed on a single run. That is, if we start from the first element, we can traverse all the elements sequentially in a single pass.
+	
+	The memory utilization is not efficient.
+	
+	The time complexity increase with the data size.
+	
+	Example: Arrays, Stack, Queue
+
+Non Linear Data Structures
+	The data items are arranged in non-sequential order (hierarchical manner).
+	
+	The data items are present at different layers.
+	
+	It requires multiple runs. That is, if we start from the first element it might not be possible to traverse all the elements in a single pass.
+
+	Different structures utilize memory in different efficient ways depending on the need.
+
+	Time complexity remains the same.
+
+	Example: Tree, Graph, Map
+
+
+A queue is a data structure when you are adding elements at the end. The first element in the queue is the first element to be processed. Elements are deleted from the start and added at the back. An example of a queue could be a logging daemon which periodically reads an array and writes it to a file. It’ll process the first element and remove it. Meanwhile another part of the program is adding new log items at the back.
+
+
+A heap is a data structure in memory. malloc() and free() operate on heap memory blocks when reserving and freeing memory. Stack grows upward from 00-FF and the heap grows downward FF-00. Theoretically, the stack and heap might both meet in the middle if that much memory was allocated and never freed. Slower than the stack as the algorithms is complex. Infinite amount available (RAM limited).
+
+A heap is implemented as a doubly linked list in the form of blocks. Each block has a start pointer and an end pointer. The end of the first block points to the start of the 2nd block and so on. Additionally, there is another pointer in the reverse direction. This helps traversing the list in either direction.
+
+A graph is a data structure with many nodes. Each node is connected in some way to another node. When a program is disassembled by IDA Pro it probably has a graph in mind when linking all the various blocks to each other.
