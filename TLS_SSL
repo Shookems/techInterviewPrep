@@ -1,0 +1,78 @@
+TLS and SSL—refer to X.509 digital files that used public key encryption to. These protocols that are used to secure(encrypt) data sent over the network. TLS is used with any network protocol such as HTTP + TLS for HTTPS, FTP + TLS for FTPS, SMTP + TLS for SMTPS. TLS and SSL are often used interchangeably. However, they are not the same. SSL is an older protocol and predecessor to TLS. 
+
+SSL vs TLS: How SSL and TLS Establish Connections
+The important difference between SSL and TLS is how each initiate a connection. SSL utilizes a port to make a connection; whereas TLS uses a protocol to establish implicit connections. The main difference between SSL and TLS is the cipher suites that are significant in establishing the secure connection. Cipher suites involve the following:
+•	key exchange algorithm
+•	authentication/validation algorithm
+•	bulk encryption algorithm
+•	message authentication code (MAC) algorithm. 
+Each SSL/TLS version has a unique set of cipher suites. The newer versions provide a more secure cipher suites, improving the security and performance of the connection.
+
+
+SSL 
+SSL stands for “Secure Socket Layer.” 
+Netscape developed the first version of SSL in 1995. 
+SSL is a cryptographic protocol that uses explicit connections to establish secure communication between web server and client. 
+Three versions of SSL have been released: SSL 1.0, 2.0, and 3.0. 
+All versions of SSL have been found vulnerable, and they all have been deprecated. 
+
+TLS 
+TLS stands for “Transport Layer Security.” 
+The first version of TLS was developed by the Internet Engineering Taskforce (IETF) in 1999. 
+TLS is also a cryptographic protocol that provides secure communication between web server and client via implicit connections. It’s the successor of SSL protocol. 
+Four versions of TLS have been released: TLS 1.0, 1.1, 1.2, and 1.3. 
+TLS 1.0 and 1.1 have been “broken” and are deprecated as of March 2020. TLS 1.2 is the most widely deployed protocol version. 
+
+Explanation of how TLS/SSL works:
+The TLS/SSL handshake process
+1.	Each TLS certificate consists of a key pair made of a public key and private key.
+	These keys are important because they interact behind the scenes during website transactions.
+2.	Every time you visit a website, the client server and web browser communicate to ensure there is a secure 	  TLS/SSL encrypted connection.
+3.	When a web browser (or client) directs to a secured website, the website server shares its TLS/SSL  		certificate and its public key with the client to establish a secure connection and a unique session key.
+4.	The browser confirms that it recognizes and trusts the issuer, or Certificate Authority, of the SSL 		certificate—in this case DigiCert. The browser also checks to ensure the TLS/SSL certificate is unexpired, 		unrevoked, and that it can be trusted.
+5.	The browser sends back a symmetric session key, and the server decrypts the symmetric session key using 	its private key. The server then sends back an acknowledgement encrypted with the session key to start the 	   encrypted session.
+6.	Server and browser now encrypt all transmitted data with the session key. They begin a secure session that 	   protects message privacy, message integrity, and server security.
+
+
+The process of asymmetric encryption works by creating a key pair with a public and private key. The private key is kept secret from everyone but the creator of the key, while the public key is available to everyone. The data is encrypted with the private key and decrypted when needed with the public key.
+
+Symmetric—same key, super-fast
+Asymmetric – public/private key, slow, avoids key exchange problem
+
+How are keys shared?
+o	Diffie-Hellman-- The Diffie–Hellman (DH) Algorithm is a key-exchange protocol that enables two parties 		communicating over public channel to establish a mutual secret without it being transmitted over the 		Internet. DH enables the two to use a public key to encrypt and decrypt their conversation or data using 	 symmetric cryptography.
+o	RSA-- a form of public-key cryptography, which is used to secure communication between multiple parties. 	 The exchange uses public keys to encrypt data as it travels electronically. RSA is what's known as 			asymmetric cryptography, which uses a combination of public and private keys for security.
+o	Private vs. public keys for servers-- Private Key is used to both encrypt and decrypt the data and is 		shared between the sender and receiver of encrypted data. The public key is only used to encrypt data and 	  to decrypt the data, the private key is used and is shared. ... The public key is free to use, and the 		private key is kept secret only.
+	
+Symmetric vs. asymmetric?
+	The basic difference between these two types of encryption is that symmetric encryption uses one key for both encryption and decryption, and the asymmetric encryption uses public key for encryption and a private key for decryption.
+
+	Symmetric keys should be kept secret from other parties than the participants in the scheme. The term "secret key" is often used as a synonym for the symmetric key. The private keys for asymmetric schemes are not shared, but are of course also kept secret, as privacy implies secrecy.
+
+	The establishment of symmetric keys between parties can be performed in several ways:
+		Key Agreement (KA): the establishment of a key using a key agreement scheme such as DH or ECDH - usually followed by a KDF (see below);
+		
+		Key Encapsulation (KE) or Key Wrapping (KW): the sending of a key encrypted by another (public) key;
+		
+		Key Sharing schemes: the creation of a key from key parts held by different persons;
+
+		Quantum Key Distribution (QKD), the distribution of keying material over an optically linked connection that is impossible to eavesdrop.
+
+		Out-of-band" procedures: the transport of a randomly generated key using, for instance: a previous telephone call, a letter or the handover of a data carrier like a USB thumbdrive.
+
+
+Insecure seed/insecure random
+	Insecure randomness errors occur when a function that can produce predictable values is used as a source of randomness in security-sensitive context. For a value to be cryptographically secure, it must be impossible or highly improbable for an attacker to distinguish between it and a truly random value.
+
+Perfect forward secrecy
+	Perfect Forward Secrecy (PFS) is an IPsec property that ensures that derived session keys are not compromised if one of the private keys is compromised in the future. ... Using PFS means that even if a third party managed to intercept a symmetrical key, that party can only use the intercepted key for a short time.
+
+Encryption vs. hashing vs. encoding
+	Encoding: Reversible transformation of data format, used to preserve usability of data. Not used to hide data.
+
+	Hashing: Is a one-way summary of data, cannot be reversed, used to validate the integrity of data. Sort of used to hide data. 
+
+	Encryption: Secure encoding of data used to protect confidentiality of data. Reversable/bi-directional function. The original message can be retrieved using a decryption key. Used to hide data.
+
+One-time password (OTP) 
+	systems provide a mechanism for logging on to a network or service using a unique password that can only be used once, as the name suggests. The static password is the most common authentication method and the least secure.

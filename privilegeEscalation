@@ -1,0 +1,8 @@
+Looking for any additional vulns they jump to, ex.
+File upload
+
+SSRF-- server-side request forgery (also known as SSRF) is a web security vulnerability that allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker's choosing. 
+
+Template injection-- Server-side template injection is a vulnerability where the attacker injects malicious input into a template to execute commands on the server-side. 
+
+Other ideas they have for how to be malicious, ex. phishing other users

@@ -1,0 +1,14 @@
+Certificate authority (CA), registration authority (RA), validation authority (VA)
+	A certificate authority (CA) is a trusted entity that issues digital certificates to authenticate content sent from web servers.
+
+	An entity authorized by the certification authority system (CAS) to collect, verify, and submit information provided by potential Subscribers which is to be entered into public key certificates. The term RA refers to hardware, software, and individuals that collectively perform this function.
+
+	A PKI Validation Authority (VA) provides validation of PKI certificates. Certificate validation services can include access to Certificate Revocation Lists (CRL), Online Certificate Status Protocol (OCSP) and CA chain certificate downloads.
+
+
+What data does a certificate store?
+	The certificate contains information about the CA name and digital signature, these two fields will be used to authenticate the certificate. 
+
+Revocation/what to do if a cert is compromised? Especially a cert that has signed others?
+	On finding, such “Revoked certificate error” user should check the certificate by viewing it. If the date is expired, then user must report to the admin of the website. However, if the date is not expired then consult with certificate provider.
+

@@ -1,0 +1,17 @@
+(HIGH) Cross-site request forgery
+DEFINITION:
+A web security vulnerability that allows an attacker to trick users into performing actions that the user does not want to perform. Partial circumvention of the origin policy that is designed to keep 	websites from interfering with each other. The Cookie Monster. Using a user’s cookies when they visit a malicious site to perform a request on their behalf. Test—burp post request capture, check for CSRF token in headers.
+
+PREVENTION:
+Include a CSRF token with requests which has the following qualities:
+Unpredictable with high entropy
+Tied to user’s session
+Validate in each case prior to executing the action.
+
+HOW DOES THIS APPLY TO THE EXAMPLE ABOVE?
+Check for validation of CSRF tokens mistakes that cause vulnerabilities.
+Check if a CSRF token can be used to validate another user. 
+
+IMPACT: 
+Elevation of privilege by tricking authenticated users into implementing actions that the user is not aware they are performing.
+Compared to CORS, no evil response seen. 
