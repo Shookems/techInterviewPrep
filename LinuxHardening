@@ -1,0 +1,279 @@
+These are the questions we can ask the engineer during the interview. The section below includes a short answer for each of the question that can then be used to dwell deeper into the answer provided by the candidate to find their comfort level.
+
+Tell me a little bit more about your time at XXXX. Resume says you worked there as XX. Was your role hands-on - or tell me more?
+
+Looks like you have quite a bit of hands-on linux expertise then. What distributions?
+
+My goal for this interview is to try to get a rough picture your Linux knowledge.
+
+I'm going to ask a variety of general questions on some concepts, and we can talk about whatever you know related to that question.
+
+I consider more detail to be better, so if you can dive deep into something, go ahead and do that.
+
+What's your favorite distro? Why?
+
+Broadly speaking, what does a kernel do?
+
+A kernel is the central part of an operating system that manages the system's resources and controls communication between hardware and software. Broadly speaking, a kernel is responsible for:
+- Memory management: Allocating and deallocating memory for different processes and tasks.
+- Process management: Creating, scheduling, and managing the execution of processes.
+- I/O management: Managing input and output operations for different devices such as keyboard, mouse, and disk drives.
+- Hardware management: Communicating with and controlling various hardware components such as processors, memory, and storage devices.
+- Security: Implementing security measures to protect the system from unauthorized access and malicious activities.
+- Networking: Facilitating communication between different devices on a network.
+- File system management: Managing the organization and storage of files on the storage devices.
+Overall, the kernel is responsible for abstracting the underlying hardware and providing a consistent interface for the rest of the operating system and applications to interact with the system's resources.
+
+What's swap space?
+
+What is swap vs virtual memory.
+
+Swap space is a portion of a hard drive that is used as an extension of a computer's physical memory (RAM). When a computer's RAM becomes full, inactive pages of memory are moved to the swap space, allowing the RAM to be used for active processes. This allows the system to continue running smoothly, even when its physical memory is full. This is also known as virtual memory.
+
+What's GRUB?
+
+GRUB (GRand Unified Bootloader) is a boot loader for Linux and some other operating systems. It is responsible for loading the operating system kernel into memory and starting the operating system.
+When a computer is powered on, the BIOS or UEFI firmware loads the boot loader from the Master Boot Record (MBR) or the Guid Partition Table (GPT) and then the boot loader loads the kernel and initrd (initial ramdisk) into memory and starts the operating system.
+GRUB also provides a menu where the user can choose between different operating systems or kernel versions that are installed on the computer, and also has the capability of booting operating systems in a rescue mode.
+Additionally, GRUB also provides a command-line interface known as the GRUB shell, which can be used for advanced troubleshooting, recovery and maintenance tasks.
+
+What's /proc?
+
+In Red Hat Linux and other Linux-based operating systems, the /proc directory is a virtual filesystem that provides information about the current state of the system. It is a standard part of the Linux kernel and is mounted automatically at boot time.
+
+The /proc directory contains a number of subdirectories and files that provide information about the system's hardware, processes, and kernel settings. Some of the more important files and directories in /proc include:
+
+- /proc/cpuinfo: Information about the system's processors, including clock speed, number of cores, and other details.
+- /proc/meminfo: Information about the system's memory, including total memory, free memory, and swap space usage.
+- /proc/mounts: Information about currently mounted file systems.
+- /proc/net: Information about the system's network interfaces and connections.
+- /proc/sys: Configuration files for various kernel settings, such as the maximum number of open files or the maximum amount of memory that can be used by a single process.
+- /proc/[pid]: Each process running on the system has a subdirectory in /proc with the process ID (pid) as the name. This directory contains information about the process, such as the process's current state, memory usage, and file descriptor information.
+
+The /proc filesystem is read-only and does not take up disk space since it is a virtual filesystem that only provide information about the system, rather than storing data. It's widely used by system administrators and developers for system monitoring, debugging and troubleshooting purpose.
+
+What's an inode?
+
+In Red Hat Linux and other Linux-based operating systems, an inode (short for index node) is a data structure used by the file system to store information about a file or directory. Each file and directory on a Linux file system has a unique inode number that is used to identify it.
+
+An inode contains the following information about a file or directory:
+
+- File type (regular file, directory, symbolic link, etc.)
+- File permissions (read, write, execute permissions for the owner, group, and others)
+- File ownership (user and group ownership)
+- File timestamps (access time, modification time, and change time)
+- File size
+- Pointers to the data blocks that contain the file's contents.
+
+The inode number is used by the file system to locate the inode, which in turn contains pointers to the data blocks that contain the file's contents. This allows the file system to quickly locate a file or directory without having to search through the entire file system.
+
+It's important to note that an inode does not contain the file name, only the metadata about the file, the file name is stored in the parent directory as a directory entry, which contains the inode number and the file name.
+
+When a file is deleted, the inode is not immediately removed from the file system, but its link count is decremented by one and only when the link count reaches zero, the inode is removed.
+
+The inode number is a unique identifier that is used by the file system to locate a file or directory, and it's also used by the system utilities and commands to identify a file.
+
+How are soft links and hard links different?
+
+In Linux, a soft link (also known as a symbolic link or symlink) and a hard link are both ways to link a file or directory to another location. However, they differ in how they are implemented and the way they behave.
+
+- A soft link is a special type of file that contains a reference (path) to another file or directory. When a program or the user accesses the soft link, the file system follows the reference and accesses the file or directory to which the soft link points. A soft link can point to a file or directory on a different file system or even a non-existing file.
+
+- A hard link, on the other hand, creates a new directory entry for a file or directory, which points to the same inode as the original file. In other words, a hard link is another name for the same file. When a program or the user accesses the hard link, it accesses the same file or directory as the original file. Hard links can only be created within the same file system.
+
+The main difference between the two types of links is that hard links are direct links to the inode, and when the original file is deleted, the hard link still has access to the file's data, while soft links are just references to the file, and when the original file is deleted, the soft link will be broken and will not have access to the file's data.
+
+Additionally, when a file is moved, the hard link will still point to the file while the soft link will not, since it's just a reference to the original file's path.
+
+It's worth noting that hard links can only be created for regular files and not directories, while soft links can be created for both files and directories.
+
+What's a pid?
+
+In Linux, a pid (short for process ID) is a unique numerical identifier that is assigned to each process that is running on the system. The pid is used by the operating system to track and manage processes, and it can be used by system administrators and developers to identify and manipulate processes.
+
+When a process is started, the operating system assigns it a unique pid, which is used to identify the process throughout its lifetime. The pid is used to keep track of the process's state, resource usage, and other information. The pid can be used to:
+
+- locate and manage a running process
+- send signals to a process
+- monitor the resource usage of a process
+- track the parent-child relationship between processes
+- find the process that holds a given file or network socket open
+
+The operating system assigns pid starting from 1 and incrementing by one for each new process. The pid 1 is usually reserved for the init process, the first process that starts when the system boots, which is responsible for starting other processes and keeping the system running.
+
+It's also worth mentioning that when a process finishes its execution, the pid is made available for reuse for other processes, but it's not guaranteed to be reused immediately.
+
+What sort of file systems are typical for Linux?
+
+There are several file systems that are commonly used in Linux-based operating systems. Some of the most popular file systems include:
+
+- ext4: This is the default file system for most modern Linux distributions. It is a journaling file system that provides fast performance, large file and file system size support, and advanced features such as file and directory level access control and extents-based allocation.
+
+- XFS: This is a high-performance file system that is optimized for large-scale storage systems and is particularly well-suited for use on high-end servers and storage appliances.
+
+- Btrfs: This is a newer file system that is designed for advanced storage management, such as snapshots, subvolumes, and online file system resizing.
+
+- NTFS: This is a file system used by Microsoft Windows, it can be used in Linux through the ntfs-3g driver, it is widely supported and can be used to read and write files on NTFS formatted partitions, it is especially useful if you need to access a Windows partition or if you want to dual-boot your computer with Windows.
+- 
+FAT32: This is a file system used by Windows and some other operating systems, it can also be used in Linux. It is widely supported, and it's the most compatible file system to share files between different operating systems, it is useful for USB drives, SD cards and other removable storage devices.
+
+- ReiserFS: This is an older file system that is no longer in active development. It was designed for high performance and efficient use of disk space, but it has been superseded by more advanced file systems like ext4 and XFS.
+
+It's worth noting that Linux also supports other file systems such as: ext2, ext3, JFS, and many more, but the ones mentioned above are the most widely used and supported in Linux systems.
+
+What are file permissions in Linux?
+
+In Linux, file permissions are a way to control access to files and directories. Each file and directory has a set of permissions that determine who can read, write, and execute the file or directory. File permissions are controlled by the file system and are enforced by the operating system's kernel.
+
+There are three types of file permissions in Linux:
+
+- read (r)
+- write (w)
+- execute (x)
+These permissions are grouped into three categories:
+
+- user (u)
+- group (g)
+- other (o)
+Each file or directory has a user owner and a group owner, and these owners have different permissions. The "other" category refers to users who are not the owner or a member of the group.
+
+For example, a file with permissions "-rwxrw-r--" would have the following access:
+
+- The user owner has read, write, and execute permissions
+- The group owner has read and write permissions
+- Others have read permissions only
+
+The permissions can be represented in octal notation as well, where each digit represents the permissions for the user, group and other, respectively. For example, the permissions "-rwxrw-r--" would be represented as 764.
+
+The permissions can be set and changed using the chmod command, which allows you to specify the permissions in either octal or symbolic notation.
+
+It's worth noting that there are also advanced permissions such as setuid and setgid, that allows a process to execute with the permissions of the file's owner or group instead of the user who started the process.
+
+File permissions are an important aspect of Linux systems, they provide a way to control access to files and directories, and also to secure sensitive information from unauthorized access or modification.
+
+What alternatives are there for managing access to files?
+
+In Red Hat Linux and other Linux-based operating systems, there are several alternatives to traditional file permissions for managing access to files. Some of the most common alternatives include:
+
+- Access Control Lists (ACLs): An ACL is a more advanced way of managing file permissions. It allows you to set fine-grained permissions for specific users and groups, rather than just the owner and group owner of a file. This allows for more complex and flexible access control.
+
+- SELinux: SELinux (Security-Enhanced Linux) is a built-in security feature of the Linux kernel that provides mandatory access control (MAC). It allows you to define and enforce security policies for files and processes on the system.
+
+- AppArmor: This is a Mandatory Access Control (MAC) security module for the Linux kernel. It allows you to define and enforce security policies for applications.
+
+- chroot: chroot is a way to change the root directory of a process, that allows the process to see only a part of the file system, which can be useful to restrict the access to the file system of a specific process or user.
+
+- PAM: PAM (Pluggable Authentication Modules) is a system for configuring authentication on Linux systems. It allows you to define and enforce authentication policies for different services and applications on the system.
+
+- Encryption: Encryption is a way to protect files and directories from unauthorized access by encrypting the data, so that it can only be read by someone who has the decryption key. Encryption can be used in combination with any of the above methods to provide an additional layer of security.
+
+It's worth noting that the appropriate method of managing access to files will depend on the specific needs of the system and the level of security that is required. Each of the alternatives mentioned above has its own advantages and disadvantages, and it's important to choose the one that best fits the requirements of your system.
+
+What can you tell me about systemd? What's your experience with it?
+
+systemd is a system and service manager for Linux-based operating systems. It is responsible for managing and starting various system services, as well as controlling the initialization of the system. systemd is designed to replace the older init system, which was the traditional method for starting and managing services on Linux systems.
+
+Some of the key features of systemd include:
+
+- Parallel service initialization: systemd starts services in parallel, which can result in faster boot times.
+
+- Dynamic service management: systemd allows you to start, stop, and reload services dynamically, without the need to reboot the system.
+
+- Logging and journaling: systemd provides a centralized logging system that allows you to view log messages from all services and the kernel in one place.
+
+- Dependency management: systemd allows you to specify dependencies between services, so that services are started and stopped in the correct order.
+
+- Automatic service recovery: systemd can automatically restart services that crash or fail to start.
+
+- Sockets-based activation: systemd allows services to be started on demand, rather than at boot time, which can save resources and improve security.
+
+- Resource control: systemd allows you to set resource limits and prioritize services, which can improve system performance.
+
+systemd is widely used in many Linux distributions like Red Hat, Fedora, Ubuntu, Debian, Arch Linux and many more, it's considered to be one of the most widely used and advanced init systems, and it's designed to improve the boot process and the overall management of services in a Linux system. Some users have raised concerns about the complexity of systemd and the amount of control it has over the system, however it's widely adopted and considered to be a more efficient
+
+In Red Hat Linux, systemd is used to manage and start services, as well as controlling the initialization of the system. Here is an example of using systemd to manage a service on Red Hat Linux:
+
+1) To check the status of a service, you can use the systemctl command. For example, to check the status of the Apache web server service, you would run the command:
+
+systemctl status httpd
+This will display information about the service, including whether it is currently running and its current status.
+
+2) To start a service, you can use the systemctl start command. For example, to start the Apache web server service, you would run the command:
+
+systemctl start httpd
+
+3) To stop a service, you can use the systemctl stop command. For example, to stop the Apache web server service, you would run the command:
+
+systemctl stop httpd
+
+4)  To restart a service, you can use the systemctl restart command. For example, to restart the Apache web server service, you would run the command:
+
+systemctl restart httpd
+
+5)To enable a service to start automatically at boot, you can use the systemctl enable command. 
+
+What can you tell me about syslog?
+
+syslog is a standard for message logging in Linux and other Unix-like operating systems. In Red Hat Linux, the syslog daemon is called rsyslog. It is used to collect and store log messages from various sources, such as system services, applications, and network devices. These log messages can then be analyzed and used to troubleshoot issues or monitor the system. Rsyslog has a flexible configuration system that allows you to specify where and how log messages are stored, as well as the level of detail to be included in the logs. It also supports advanced features such as filtering, parsing, and forwarding of log messages.
+
+Here is an example of how to use syslog on Red Hat Linux to log messages from the system's kernel:
+
+- Open the rsyslog configuration file located at /etc/rsyslog.conf
+
+- Add the following line to the file to enable kernel logging:
+
+kern.* /var/log/kernel.log
+
+- Save and close the file.
+
+- Restart the rsyslog service to apply the changes:
+
+systemctl restart rsyslog
+
+- Verify that the kernel log messages are being written to the /var/log/kernel.log file by checking its contents:
+
+tail -f /var/log/kernel.log
+
+- You can also use the logrotate to rotate the logs and keep them in a manageable size, which can be done by adding the path of the log file in the logrotate configuration file
+
+vi /etc/logrotate.d/syslog
+
+This is just a simple example, but rsyslog can be configured to do much more, such as filtering log messages based on their severity, forwarding logs to remote servers, and creating custom log files for specific applications.
+
+What can you tell me about cron?
+
+Cron is a Linux utility that allows you to schedule tasks (also known as "cron jobs") to run automatically at specified times. In Red Hat Linux, the cron daemon is called crond. It is typically used to schedule repetitive tasks such as backups, system maintenance, and running scripts.
+
+Each user on a Linux system can have their own crontab file, which is a plain text file that contains a list of commands to be executed and the schedule on which they should run. The format of a crontab entry is as follows:
+
+* * * * * command
+- - - - -
+| | | | |
+| | | | ----- Day of week (0 - 7) (Sunday is both 0 and 7)
+| | | ------- Month (1 - 12)
+| | --------- Day of month (1 - 31)
+| ----------- Hour (0 - 23)
+------------- Minute (0 - 59)
+
+For example, the following crontab entry will run the command /usr/local/bin/script.sh every day at 3:30am:
+30 3 * * * /usr/local/bin/script.sh
+
+You can also use the special characters to set the schedule more easily, for example to run a task every 5 minutes you can use:
+
+*/5 * * * * /usr/local/bin/script.sh
+
+You can also use the crontab -e command to edit the crontab file and add your own tasks. Once you've added a task to the crontab, it will run automatically at the specified times without any further intervention.
+
+Do you have experience administrating any other distributions? (compared to Red Hat)
+
+What can you tell me about top, vmstat, sar
+
+- top is a Linux command-line utility that provides a real-time, dynamic view of a running system's processes. It displays a list of the most resource-intensive processes, along with information about their CPU usage, memory usage, and other statistics. The output is updated in real-time, allowing you to monitor the performance of your system over time.
+
+- vmstat is a command-line tool that provides a summary of system statistics such as CPU usage, memory usage, I/O operations, and processes. The information is presented in a tabular format, making it easy to see how the various components of the system are performing.
+
+- sar is a command-line tool that allows you to collect, report, and save system activity information. It can be used to monitor various system resources, including CPU usage, memory usage, I/O operations, and network activity. sar can also be used to generate reports on historical system activity, which can be useful for troubleshooting performance issues or identifying trends over time.
+
+All of these tools are usually found on Redhat Linux systems and can be used to monitor and troubleshoot the performance of your system. top and vmstat provide real-time information, while sar provides historical data, thus allowing you to monitor the system performance over time and use that data to identify trends and patterns in the system's behavior.
+
+Scoring :
